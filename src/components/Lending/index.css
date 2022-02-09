@@ -1,0 +1,35 @@
+.container {
+  margin: 2rem;
+}
+
+.mainBlock {
+  display: flex;
+  flex-direction: row;
+  margin: 2rem;
+  padding: 2rem 4rem;
+  background-color: white;
+  height: auto;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 100%;
+}
+
+.exploreBtn {
+  margin-top: 4rem;
+  color: white;
+  background-color: blue;
+  border: none;
+  font-size: 2rem;
+  padding: 0 1rem;
+}
+
+.mainImgBlock {
+  width: 50%;
+  padding: 1rem;
+}
+
+.mainImg {
+  max-width: 100%;
+  object-fit: cover;
+  max-height: 50vh;
+}

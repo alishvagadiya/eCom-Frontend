@@ -1,0 +1,24 @@
+.container {
+  margin: 2rem;
+}
+
+.categoryHeading {
+  text-align: center;
+}
+
+.categoryBlock {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 2rem;
+}
+
+.category {
+  font-size: 2rem;
+  padding: 3rem;
+  background-color: #f6f6f6;
+  min-width: 30%;
+  margin: 1rem;
+  text-align: center;
+  text-decoration: none;
+}

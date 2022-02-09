@@ -1,0 +1,83 @@
+.advisorDetailCard {
+  max-width: 70vw;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  align-self: center;
+  background-color: white;
+  color: black;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.advisorHeader {
+  margin: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  text-decoration: none;
+
+}
+
+.advisorImgBlock {
+  width: 50%;
+  padding: 1rem;
+}
+
+.advisorDetails {
+  width: 50%;
+  text-align: left;
+}
+
+.advisorImg {
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.key {
+  margin-right: 5px;
+  font-weight: 300;
+}
+
+.value {
+  font-weight: 500;
+}
+
+.advisorBooking {
+  color: white;
+  background-color: blue;
+  border: none;
+  font-size: 1.5rem;
+  padding: 0 1rem;
+  width: 100%;
+}
+
+.hr {
+  border-top: 1px solid gray;
+  content: "";
+  margin: 1rem;
+  width: 90%;
+}
+
+.advisorBody {
+  margin: 1rem;
+}
+
+.advisorExpertise {
+  text-align: left;
+  margin: 0 5rem;
+}
+
+.showAll {
+  color: blue;
+  border: 1px solid blue;
+  font-size: 1rem;
+  padding: 1rem 2rem;
+  text-decoration: none;
+}
+
+.showAllBlock {
+  margin: 3rem;
+}
