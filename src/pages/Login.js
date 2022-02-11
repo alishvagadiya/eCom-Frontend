@@ -22,7 +22,7 @@ export default function Login() {
   async function loginHandler(e) {
     e.preventDefault();
     setLoading('Loging you in');
-    const { token, success } = await login(email, password)
+    const { success } = await login(email, password)
     if (success) {
       setLoading('Loged you in');
       console.log("login successfully");
