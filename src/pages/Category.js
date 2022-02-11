@@ -14,9 +14,9 @@ export default function Category() {
         {
           advisorsDB.data.map((advisor) => {
             return (showCategoryType === 'All') ?
-              <Link Link className="advisorContainer" to={`/AdvisorDetail/${advisor.id}`}> <AdvisorCard {...advisor} />  </Link>
+              <Link Link className="advisorContainer" to={`/AdvisorDetail/${advisor.id}`}> <AdvisorCard {...advisor} key={advisor.id} />  </Link>
               : (advisor.category.indexOf(showCategoryType) > -1) ?
-                <Link className="advisorContainer" to={`/AdvisorDetail/${advisor.id}`}>  <AdvisorCard {...advisor} />  </Link> : ''
+                <Link className="advisorContainer" to={`/AdvisorDetail/${advisor.id}`}>  <AdvisorCard {...advisor} key={advisor.id} />  </Link> : ''
           }
           )
         }

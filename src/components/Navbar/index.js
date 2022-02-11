@@ -1,13 +1,15 @@
 import React from "react";
-import { Link, Routes, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useAuth } from "../../context";
 import "./index.css"
-import { Home, Cart, AdvisorDetail, Category, WishList } from "../../pages"
 export default function App() {
+
+  const { loginStatus, userDetails, logout } = useAuth();
   return (
     <>
-      <nav class="navBlock">
+      <nav className="navBlock">
         <h2>FinComm</h2>
-        <ul class="navList">
+        <ul className="navList">
           <li className="navLink">
             <Link to="/">Home</Link>
           </li>
@@ -20,16 +22,27 @@ export default function App() {
           <li className="navLink">
             <Link to="/WishList">WishList</Link>
           </li>
+          <li className="navLink">
+            {
+              loginStatus
+                ? "Hi, " + userDetails.name
+                : <Link to="/Signup">SignUp</Link>
+            }
+          </li>
+          <li className="navLink">
+            {
+              loginStatus
+                ? <Link to="/" onClick={() => {
+                  logout()
+                }}
+                >
+                  Logout
+                </Link>
+                : <Link to="/Login">Login</Link>
+            }
+          </li>
         </ul>
       </nav>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/category/:showCategoryType" element={<Category />} />
-        <Route path="/AdvisorDetail/:advisorId" element={<AdvisorDetail />} />
-        <Route path="/AdvisorDetail" element={<AdvisorDetail />} />
-        <Route path="/wishlist" element={<WishList />} />
-        <Route path="/cart" element={<Cart />} />
-      </Routes>
     </>
   );
 }

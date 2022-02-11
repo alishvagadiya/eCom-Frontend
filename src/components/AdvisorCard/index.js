@@ -23,7 +23,7 @@ export default function App({
         </p>
         <p>
           <span className="key">Charges:</span>
-          <span className="value">${price}</span>
+          <span className="value">${price} / Month</span>
         </p>
         <p>
           <span className="key">Rating:</span>
