@@ -12,29 +12,34 @@ export const AuthProvider = ({ children }) => {
   const [userDetails, setUserDetails] = useState({});
 
   useEffect(() => {
-    if (loginStatus && token) {
-      async function setUserData() {
-        try {
-          console.log(`${url}/userdetails`);
-          const response = await axios.get(`${url}/userdetails`);
-          const { userDetails: userDetailsDb, success, message } = response.data
-          if (success) {
-            console.log({ userDetailsDb, success })
-            setUserDetails(userDetailsDb)
-            return { userDetailsDb, token, success, message };
-          } else {
-            console.log({ success, message })
-            return { success, message };
+    console.log({ location: "authContext.useEffect.start", loginStatus, token, userDetails, length: userDetails.length });
+    if (loginStatus && token && userDetails.length === 0)
+      if (loginStatus && token && userDetails.length === 0) {
+        async function setUserData() {
+          try {
+            // console.log(`${url}/userdetails`);
+            const response = await axios.get(`${url}/userdetails`);
+            const { userDetails: userDetailsDb, success, message } = response.data
+            if (success) {
+              console.log({ location: "authContext.useEffect.dataFetched.if", userDetailsDb, success })
+              setUserDetails(userDetailsDb)
+              return { userDetailsDb, token, success, message };
+            } else {
+              console.log({ location: "authContext.useEffect.dataFetched.else", success, message })
+              return { success, message };
+            }
+          } catch (error) {
+            console.log({ code: 'context.signup', error })
+            return { success: false, message: error.message, code: 'context.signup' };
           }
-        } catch (error) {
-          console.log({ code: 'context.signup', error })
-          return { success: false, message: error.message, code: 'context.signup' };
         }
+        const data = setUserData().then(() => {
+          console.log({
+            location: "authContext.useEffect.set", data
+          })
+        });
       }
-      setUserData();
-    }
-  }, [loginStatus, token]);
-
+  }, [loginStatus, token, userDetails]);
   token && setAuthHeader(token);
 
   async function signup(name, email, password) {
@@ -48,11 +53,12 @@ export const AuthProvider = ({ children }) => {
           password,
         }
       );
-      const { user, token, success, message } = response.data
+      const { userDetails, token, success, message } = response.data
       if (success) {
-        console.log({ user, token, success, message })
+        console.log({ userDetails, token, success, message })
         localStorage.setItem("ecom_login", JSON.stringify({ isLoggedIn: true, token: token }))
-        return { user, token, success, message };
+        setLoginDetails({ from: "signup", loginStatus: true, token, userDetails })
+        return { userDetails, token, success, message };
       } else {
         console.log({ success, message })
         return { success, message };
@@ -73,11 +79,13 @@ export const AuthProvider = ({ children }) => {
           password,
         }
       );
-      const { user, token, success, message } = response.data
+      const { userDetails, token, success, message } = response.data
       if (success) {
-        console.log({ user, token, success, message })
-        localStorage.setItem("ecom_login", JSON.stringify({ isLoggedIn: true, token: token }))
-        return { user, token, success, message };
+        console.log({ location: "authContext.login", userDetails, token, success, message })
+        localStorage.setItem("ecom_login", JSON.stringify({ isLoggedIn: true, token: token, userDetails: userDetails }))
+        setLoginDetails({ from: "login", loginStatus: true, token, userDetails })
+
+        return { userDetails, token, success, message };
       } else {
         console.log({ success, message })
         return { success, message };
@@ -94,12 +102,17 @@ export const AuthProvider = ({ children }) => {
     }
     axios.defaults.headers.common["Authorization"] = null;
   }
+  async function setLoginDetails({ from, loginStatus, token, userDetails }) {
+    setLoginStatus(loginStatus)
+    setToken(token)
+    setUserDetails(userDetails);
+    console.log({ location: "authContext.setLoginDetails", from, loginStatus, token, userDetails })
+  }
 
   async function logout() {
-    setLoginStatus(false)
-    setToken(null)
-    setUserDetails({});
     localStorage.removeItem("ecom_login");
+    setLoginDetails({ from: "logout", loginStatus: false, token: null, userDetails: {} })
+
     console.log(localStorage.getItem("ecom_login"));
   }
 

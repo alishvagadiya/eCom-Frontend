@@ -1,17 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { useData } from "../../context";
 import "./index.css"
-export default function App({
-  id,
-  name,
-  price,
-  rating,
-  category,
-  yearsOfExperience,
-  location,
-  wfh,
-  profile_URL,
-  details
-}) {
+export default function AdvisorDetailCard() {
+  const { advisorId } = useParams();
+  const { allAdvisor } = useData();
+  console.log({ allAdvisor });
+  const advisor = allAdvisor.find((advisor) => advisor._id === advisorId);
+
+  const { _id,
+    name,
+    price,
+    rating,
+    category,
+    yearsOfExperience,
+    location,
+    wfh,
+    profile_URL,
+    details } = advisor
   console.log("category ", category);
   let categoryStr = category.join(', ');
 
@@ -45,7 +50,10 @@ export default function App({
                 <span className="key">Work From Home:</span>
                 <span className="value">{wfh}</span>
               </p>
-              <button className="advisorBooking">Book Now</button>
+              <p className="bookingActionBox">
+                {/* <input className="bookingInput" type="number" value="1"></input> */}
+                <button className="bookingBtn" value={_id}>Book Now</button>
+              </p>
             </div>
           </div>
           <div className="advisorBody">
@@ -60,7 +68,7 @@ export default function App({
         </div>
       </center>
       <center className="showAllBlock">
-        <Link className="showAll" to="/category"> See All </Link>
+        <Link className="showAll" to="/category/All"> See All </Link>
       </center>
     </>
   );

@@ -5,6 +5,7 @@ import "./index.css"
 export default function App() {
 
   const { loginStatus, userDetails, logout } = useAuth();
+  // console.log({ location: "navBarCom.useAuth", todo: "need to update", loginStatus, userDetails, logout });
   return (
     <>
       <nav className="navBlock">
@@ -19,9 +20,9 @@ export default function App() {
           <li className="navLink">
             <Link to="/cart">Cart</Link>
           </li>
-          <li className="navLink">
+          {/* <li className="navLink">
             <Link to="/WishList">WishList</Link>
-          </li>
+          </li> */}
           <li className="navLink">
             {
               loginStatus

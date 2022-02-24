@@ -53,8 +53,7 @@ Form {
   margin: 1rem;
 }
 
-input,
-button {
+.formInput {
   box-sizing: border-box;
   padding: 1rem;
   width: 100%;

@@ -34,14 +34,14 @@ export default function Signup() {
         <h1 className="pageHeader"> SignUp </h1>
         <form>
           <div className="inputBox">
-            <input type="text" placeholder="Enter Your Name" value={name} onChange={(e) => setName(() => e.target.value)} />
+            <input className="formInput" type="text" placeholder="Enter Your Name" value={name} onChange={(e) => setName(() => e.target.value)} />
 
           </div>
           <div className="inputBox">
-            <input type="email" placeholder="Enter Your Email id" value={email} onChange={(e) => setEmail(() => e.target.value)} />
+            <input className="formInput" className="formInput" type="email" placeholder="Enter Your Email id" value={email} onChange={(e) => setEmail(() => e.target.value)} />
           </div>
           <div className="inputBox">
-            <input type="password" placeholder="Enter Your Password" value={password} onChange={(e) => setPassword(() => e.target.value)} />
+            <input className="formInput" type="password" placeholder="Enter Your Password" value={password} onChange={(e) => setPassword(() => e.target.value)} />
           </div>
           <div className="inputBox">
             <button className="submitBtn" type="submit" onClick={(e) => signupHandler(e)} >Sign Up</button>

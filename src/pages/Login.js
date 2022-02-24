@@ -38,10 +38,10 @@ export default function Login() {
         <h1 className="pageHeader"> Login </h1>
         <form>
           <div className="inputBox">
-            <input type="email" placeholder="Enter Your Email id" value={email} onChange={(e) => setEmail(() => e.target.value)} />
+            <input className="formInput" type="email" placeholder="Enter Your Email id" value={email} onChange={(e) => setEmail(() => e.target.value)} />
           </div>
           <div className="inputBox">
-            <input type="password" placeholder="Enter Your Password" value={password} onChange={(e) => setPassword(() => e.target.value)} />
+            <input className="formInput" type="password" placeholder="Enter Your Password" value={password} onChange={(e) => setPassword(() => e.target.value)} />
           </div>
           <div className="inputBox">
             <button className="submitBtn" type="submit" onClick={(e) => loginHandler(e)} >{loading}</button>
